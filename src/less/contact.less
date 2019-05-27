@@ -1,0 +1,54 @@
+.page-contact {
+    .contact-form {
+        max-width: 400px;
+        margin: auto;
+        text-align: center;
+        margin-top: 100px;
+        padding: 0 10px;
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        .form-message {
+            font-size: 16px;
+            color: green;
+        }
+
+        label {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        input,
+        textarea {
+            font-size: 16px;
+            padding: 5px 10px;
+            height: auto;
+            border-radius: 3px;
+            line-height: 1.5;
+            color: @text-grey;
+            border: 1px solid @border-grey;
+        }
+        .contact-btn {
+            color: white;
+            background-color: @link-blue;
+            border-color: @link-blue;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 3px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: @btn-background-hover;
+                border-color: @btn-border-hover;
+                }
+            &:active {
+                background-color: @btn-background-active;
+                border-color: @btn-border-active;
+            }
+        }
+    }
+}
