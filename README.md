@@ -1,2 +1,7 @@
 # shanebarnwell.com
-## Small application with server and client rendering using react ##
+
+This is my personal site/online portfolio.
+
+
+Server and client rendering using React, Express, Node.js, Webpack, Less and more.
+

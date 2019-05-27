@@ -6,11 +6,21 @@
         @media (max-width: 650px) {
             margin-top: 75px;
         }
-    }
 
-    p {
-        line-height: 22px;
-        font-size: 17px;
-        margin-bottom: 1em;
+        p {
+            line-height: 22px;
+            font-size: 17px;
+            margin-bottom: 1em;
+        }
+
+        a {
+            text-decoration: none;
+            color: @link-blue;
+
+            &:hover {
+                text-decoration: underline;
+                color: @btn-border-active;
+            }
+        }
     }
 }
