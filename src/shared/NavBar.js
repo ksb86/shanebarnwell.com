@@ -12,6 +12,10 @@ const links = [
         linkText: 'About',
         className: 'about'
     }, {
+        href: '/mini-projects',
+        linkText: 'Mini Projects',
+        className: 'mini-projects'
+    }, {
         href: '/contact',
         linkText: 'Contact',
         className: 'contact'
