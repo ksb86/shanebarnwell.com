@@ -49,6 +49,6 @@
         "serve-favicon": "^2.5.0",
         "slackbots": "^1.1.0",
         "useragent": "^2.3.0",
-        "yarn": "^1.10.1"
+        "yarn": "^1.17.3"
     }
 }
