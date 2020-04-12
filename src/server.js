@@ -7,12 +7,14 @@ import tz from 'moment-timezone';
 import md5 from 'md5';
 import SlackBots from 'slackbots';
 import request from 'request';
+import 'regenerator-runtime/runtime.js';
 import {renderToString} from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import favicon from 'serve-favicon';
 import compression from 'compression';
 import morgan from 'morgan';
 import useragent from 'useragent';
+import fetch from 'isomorphic-fetch';
 
 import config from '../config.json';
 import App from './shared/App';
@@ -110,16 +112,15 @@ server.get('*', (req, res, next) => {
 });
 
 /* POST a post handler. */
-server.post('/contact', (req, res, next) => {
-    const stringifiedBody = JSON.stringify(req.body);
-    if (/talkwithlead|talkwithcustomer/gi.test(stringifiedBody)) {
-        // spammer
-        return res.json({
-            sent: true
-        });
-    }
+server.post('/contact', async (req, res, next) => {
+    const captchaResponse = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `secret=${config.recaptchaSecret}&response=${req.body.token}`,
+    });
+    const result = await captchaResponse.json();
 
-    slackBot.postMessageToUser('shane', req.body.email + ' said: "' + req.body.message + '"', (data) => {
+    slackBot.postMessageToUser('shane', `${req.body.email} said: "${req.body.message}"\n\nscore: ${(result.score)}`, (data) => {
         if (req.body.js) {
             return res.json({
                 sent: true

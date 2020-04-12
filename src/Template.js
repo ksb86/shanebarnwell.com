@@ -14,7 +14,8 @@ const Template = ({path, title, body, cssPath, jsPath}) => `
       <link href="/favicon.ico" rel="icon" type="image/x-icon" />
       <link rel="stylesheet" href="${cssPath}">
       <script src="${jsPath}" defer></script>
-    </head>
+      <script src="https://www.google.com/recaptcha/api.js?render=6LcNzugUAAAAAJwPesYxSIz6nhDdtJ0uVXJW-r7x"></script>
+      </head>
     <body class="page-${path}">
       <div id="root">${body}</div>
     </body>
