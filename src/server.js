@@ -120,6 +120,8 @@ server.post('/contact', async (req, res, next) => {
     });
     const result = await captchaResponse.json();
 
+    console.log({result});
+
     slackBot.postMessageToUser('shane', `${req.body.email} said: "${req.body.message}"\n\nscore: ${(result.score)}`, (data) => {
         if (req.body.js) {
             return res.json({
