@@ -118,11 +118,11 @@ server.post('/contact', async (req, res, next) => {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: `secret=${config.recaptchaSecret}&response=${req.body.token}`,
     });
-    const result = await captchaResponse.json();
+    const captchaResult = await captchaResponse.json();
 
-    console.log({result});
+    console.log(`CAPTCHA: ${JSON.stringify(captchaResult)}`);
 
-    slackBot.postMessageToUser('shane', `${req.body.email} said: "${req.body.message}"\n\nscore: ${(result.score)}`, (data) => {
+    slackBot.postMessageToUser('shane', `${req.body.email} said: "${req.body.message}"\n\nscore: ${captchaResult.score}`, (data) => {
         if (req.body.js) {
             return res.json({
                 sent: true
