@@ -122,7 +122,7 @@ server.post('/contact', async (req, res, next) => {
 
     console.log(`CAPTCHA: ${JSON.stringify(captchaResult)}`);
 
-    slackBot.postMessageToUser('shane', `${req.body.email} said: "${req.body.message}"\n\nscore: ${captchaResult.score}`, (data) => {
+    slackBot.postMessageToUser('shane', `${req.body.email} said: "${req.body.message}"\n\nrecaptca score: ${captchaResult.score*100}%`, (data) => {
         if (req.body.js) {
             return res.json({
                 sent: true
