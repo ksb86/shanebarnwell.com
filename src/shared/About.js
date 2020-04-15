@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-
+import React, { Component } from 'react';
 class About extends Component {
     componentDidMount() {
         document.body.className = 'page-about';
@@ -9,7 +8,7 @@ class About extends Component {
             <div className="content">
                 <p>
                     I am a Senior Programmer at <a href="https://macu.com">Mountain America Credit Union</a>, currently focusing on building their
-                    member and loan origination application. I'm developing in TypeScript, React, Redux, SCSS, C#, .NET and SQL with other highly skilled
+                    member and loan origination application. I'm developing in TypeScript, React, Redux, Sass, C#, .NET and SQL with other highly skilled
                     developers.
                 </p>
                 <p>
@@ -19,12 +18,15 @@ class About extends Component {
                     React, Redux, Express, Splunk, CI/CD Pipelines, Docker, and many others.
                 </p>
                 <p>
-                    Some of the tools and libraries I used to build <a href="https://shanebarnwell.com">shanebarnwell.com</a> include React, React Router, Express, Webpack and
+                    Some of the tools and libraries I used to build shanebarnwell.com include React, React Router, Express, Webpack and
                     Less. As a good practice for SEO and page performance, I have the server rendering the complete html.
                 </p>
                 <p>
                     I love building websites and I enjoy making things with microcontrollers like the raspberry pi and arduino.
                     Bacon and chocolate are part of my staple diet. I have an amazing family who I love more than anything!
+                </p>
+                <p>
+                    🤓
                 </p>
             </div>
         );

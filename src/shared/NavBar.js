@@ -1,7 +1,6 @@
 // shared/NavBar.js
-import React, {Component} from 'react'
-import { NavLink, IndexLink } from 'react-router-dom'
-// import { IndexLink } from 'react-router'
+import React, { Component } from 'react'
+import { NavLink } from 'react-router-dom'
 const links = [
     {
         href: '/',
