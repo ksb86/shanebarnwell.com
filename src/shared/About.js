@@ -7,7 +7,7 @@ class About extends Component {
         return (
             <div className="content">
                 <p>
-                    I am a Senior Programmer at <a target="_blank" rel="noopener noreferrer" href="https://macu.com">Mountain America Credit Union</a>, currently focusing on building their
+                    I am a Senior Programmer at <a target="_blank" rel="noopener noreferrer" href="https://macu.com">Mountain America Credit Union</a>, currently focused on building their
                     member and loan origination application. I'm developing in TypeScript, React, Redux, Sass, C#, .NET and SQL with other highly skilled
                     developers.
                 </p>
