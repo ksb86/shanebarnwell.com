@@ -129,7 +129,8 @@ server.post('/contact', async (req, res, next) => {
             });
         }
 
-        return {};
+        res.redirect(301, '/contact');
+        return res.send();
     });
 });
 
