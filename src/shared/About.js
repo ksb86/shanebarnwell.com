@@ -19,7 +19,7 @@ class About extends Component {
                 </p>
                 <p>
                     Some of the tools and libraries I used to build shanebarnwell.com include React, React Router, Express, Webpack and
-                    Less. As a good practice for SEO and page performance, I have the server rendering the complete html.
+                    Less. As a good practice for SEO and page performance, I have the server rendering the complete html.  Disable javascript in your browser and you'll see that the site, although simple, is still fully functional.
                 </p>
                 <p>
                     I love building websites and I enjoy making things with microcontrollers like the raspberry pi and arduino.
