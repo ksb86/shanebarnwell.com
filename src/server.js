@@ -5,7 +5,7 @@ import React from 'react';
 import cors from "cors";
 import tz from 'moment-timezone';
 import md5 from 'md5';
-import SlackBots from 'slackbots';
+import { IncomingWebhook } from '@slack/webhook';
 import request from 'request';
 import 'regenerator-runtime/runtime.js';
 import {renderToString} from 'react-dom/server';
@@ -19,13 +19,6 @@ import fetch from 'isomorphic-fetch';
 import config from '../config.json';
 import App from './shared/App';
 import Template from './Template';
-
-// https://my.slack.com/services/new/bot
-const slackBot = new SlackBots({
-    token: config.slackToken,
-    name: 'shanebarnwell.com'
-});
-
 import { _get } from './helpers/_.js';
 
 const server = express();
@@ -122,7 +115,16 @@ server.post('/contact', async (req, res, next) => {
 
     console.log(`CAPTCHA: ${JSON.stringify(captchaResult)}`);
 
-    slackBot.postMessageToUser('shane', `${req.body.email} said: "${req.body.message}"\n\nrecaptca score: ${captchaResult.score*100}%`, (data) => {
+    if (captchaResult && captchaResult.score && captchaResult.score > .1) {
+        try {
+            const webhook = new IncomingWebhook(config.webhookUrl);
+            await webhook.send({
+                text: `${req.body.email} said: "${req.body.message}"\n\nrecaptca score: ${captchaResult.score*100}%\n---------------`,
+            });
+        } catch (error) {
+            console.log({error});
+        }
+
         if (req.body.js) {
             return res.json({
                 sent: true
@@ -131,7 +133,7 @@ server.post('/contact', async (req, res, next) => {
 
         res.redirect(301, '/contact');
         return res.send();
-    });
+    }
 });
 
 const port = (process.env.NODE_ENV === 'production') ? 5000 : 3000;

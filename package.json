@@ -30,6 +30,7 @@
         "webpack-node-externals": "^1.2.0"
     },
     "dependencies": {
+        "@slack/webhook": "^5.0.3",
         "babel-cli": "^6.26.0",
         "babel-plugin-transform-decorators": "^6.24.1",
         "babel-plugin-transform-react-jsx-source": "^6.22.0",
@@ -48,7 +49,6 @@
         "regenerator-runtime": "^0.13.5",
         "request": "^2.88.0",
         "serve-favicon": "^2.5.0",
-        "slackbots": "^1.1.0",
         "useragent": "^2.3.0",
         "yarn": "^1.10.1"
     }
