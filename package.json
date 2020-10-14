@@ -50,6 +50,6 @@
         "request": "^2.88.0",
         "serve-favicon": "^2.5.0",
         "useragent": "^2.3.0",
-        "yarn": "^1.10.1"
+        "yarn": "^1.22.0"
     }
 }
