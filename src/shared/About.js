@@ -7,8 +7,8 @@ class About extends Component {
         return (
             <div className="content">
                 <p>
-                    I am a Senior Software Engineer currently working at <a target="_blank" rel="noopener noreferrer" href="https://macu.com">Mountain America Credit Union</a>. Right now, I'm focused on building an internal CMS
-                    to administer and manage the public facing macu.com website. Previously, I helped build the front end to their internal member and loan origination application. I'm developing in TypeScript, React, Redux, Sass, Gatsby, Node.js, Nest, SQL, C#, and .NET.
+                    I am a Senior Software Engineer working at <a target="_blank" rel="noopener noreferrer" href="https://macu.com">Mountain America Credit Union</a>. Right now, I'm focused on building an internal CMS
+                    to administer and manage the public facing macu.com website. Previously, I helped build the front end of the internal member and loan origination application. I'm developing in TypeScript, React, Redux, Sass, Gatsby, Node.js, Nest, SQL, C#, and .NET.
                 </p>
                 <p>
                     Before working at MACU I worked for <a target="_blank" rel="noopener noreferrer" href="https://www.overstock.com">Overstock.com</a> for 7 years in several capacities, including
