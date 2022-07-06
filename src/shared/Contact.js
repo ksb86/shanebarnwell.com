@@ -14,7 +14,7 @@ class Contact extends Component {
         document.body.className = 'page-contact';
     }
 
-    handleContactSubmit = e => {
+    handleContactSubmit = async e => {
         e.preventDefault();
         const email = document.getElementById('emailInput').value;
         const message = document.getElementById('messageInput').value;
@@ -27,12 +27,20 @@ class Contact extends Component {
             formDisabled: true
         });
 
+        const token = await new Promise((res, rej) => {
+            grecaptcha.ready(function() {
+                grecaptcha.execute('6LcNzugUAAAAAJwPesYxSIz6nhDdtJ0uVXJW-r7x', {action: 'contact'}).then(function(token) {
+                   res(token);
+                });
+            });
+        });
+
         fetch('/contact', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8'
             },
-            body: JSON.stringify({email, message, js: true})
+            body: JSON.stringify({email, message, js: true, token})
         }).then((data) => {
             if(data.ok) {
                 return data.json();

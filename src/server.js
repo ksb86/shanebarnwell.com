@@ -5,25 +5,20 @@ import React from 'react';
 import cors from "cors";
 import tz from 'moment-timezone';
 import md5 from 'md5';
-import SlackBots from 'slackbots';
+import { IncomingWebhook } from '@slack/webhook';
 import request from 'request';
+import 'regenerator-runtime/runtime.js';
 import {renderToString} from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import favicon from 'serve-favicon';
 import compression from 'compression';
 import morgan from 'morgan';
 import useragent from 'useragent';
+import fetch from 'isomorphic-fetch';
 
 import config from '../config.json';
 import App from './shared/App';
 import Template from './Template';
-
-// https://my.slack.com/services/new/bot
-const slackBot = new SlackBots({
-    token: config.slackToken,
-    name: 'shanebarnwell.com'
-});
-
 import { _get } from './helpers/_.js';
 
 const server = express();
@@ -110,24 +105,35 @@ server.get('*', (req, res, next) => {
 });
 
 /* POST a post handler. */
-server.post('/contact', (req, res, next) => {
-    const stringifiedBody = JSON.stringify(req.body);
-    if (/talkwithlead|talkwithcustomer/gi.test(stringifiedBody)) {
-        // spammer
-        return res.json({
-            sent: true
-        });
-    }
+server.post('/contact', async (req, res, next) => {
+    const captchaResponse = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `secret=${config.recaptchaSecret}&response=${req.body.token}`,
+    });
+    const captchaResult = await captchaResponse.json();
 
-    slackBot.postMessageToUser('shane', req.body.email + ' said: "' + req.body.message + '"', (data) => {
+    console.log(`CAPTCHA: ${JSON.stringify(captchaResult)}`);
+
+    if (captchaResult && captchaResult.score && captchaResult.score > .1) {
+        try {
+            const webhook = new IncomingWebhook(config.webhookUrl);
+            await webhook.send({
+                text: `${req.body.email} said: "${req.body.message}"\n\nrecaptca score: ${captchaResult.score*100}%\n---------------`,
+            });
+        } catch (error) {
+            console.log({error});
+        }
+
         if (req.body.js) {
             return res.json({
                 sent: true
             });
         }
 
-        return {};
-    });
+        res.redirect(301, '/contact');
+        return res.send();
+    }
 });
 
 const port = (process.env.NODE_ENV === 'production') ? 5000 : 3000;
