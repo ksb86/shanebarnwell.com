@@ -15,7 +15,16 @@ const Template = ({path, title, body, cssPath, jsPath}) => `
       <link rel="stylesheet" href="${cssPath}">
       <script src="${jsPath}" defer></script>
       <script src="https://www.google.com/recaptcha/api.js?render=6LcNzugUAAAAAJwPesYxSIz6nhDdtJ0uVXJW-r7x"></script>
-      </head>
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-CG5LHC8BRL"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-CG5LHC8BRL');
+      </script>
+    </head>
     <body class="page-${path}">
       <div id="root">${body}</div>
     </body>
