@@ -14,7 +14,7 @@ const Template = ({path, title, body, cssPath, jsPath}) => `
       <link href="/favicon.ico" rel="icon" type="image/x-icon" />
       <link rel="stylesheet" href="${cssPath}">
       <script src="${jsPath}" defer></script>
-      <script src="https://www.google.com/recaptcha/api.js?render=6LcNzugUAAAAAJwPesYxSIz6nhDdtJ0uVXJW-r7x"></script>
+      <!-- script src="https://www.google.com/recaptcha/api.js?render=6LcNzugUAAAAAJwPesYxSIz6nhDdtJ0uVXJW-r7x"></script -->
       <!-- Google tag (gtag.js) -->
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-CG5LHC8BRL"></script>
       <script>
